@@ -19,20 +19,31 @@ try:
     except:
         pass
 
+    ipo.driver.implicitly_wait(5)
     for i in range(len(ipo_list)):
+        ipo.driver.get('https://trade.smbcnikko.co.jp/MoneyManagement/9404K0821255/ez_ipo/meigara/ichiran')
         ipo.driver.find_elements_by_xpath("//img[@alt='需要申告受付中']")[i].click()
         ipo.driver.find_element_by_id("mcChk").click()
-        ipo.driver.find_element_by_xpath("//input[3]").click()
+        ipo.driver.find_element_by_xpath("//input[@alt='次へ']").click()
         try:
             ipo.driver.find_element_by_name("snkokSu").send_keys('1')
             ipo.driver.find_element_by_name("snkokKakaku").click()
             ipo.driver.find_element_by_name("snkokKakaku").send_keys(Keys.ARROW_DOWN)
             ipo.driver.find_element_by_name("snkokKakaku").send_keys(Keys.ENTER)
         except:
-            continue            
-        ipo.driver.find_element_by_name("実行").click()
+            continue
+
+        ipo.driver.find_element_by_xpath("//input[@alt='申告内容確認']").click()
         ipo.screenshot()
-        ipo.driver.find_element_by_xpath("(//input[@type='image'])[2]").click()
+        try:
+            ipo.driver.find_element_by_xpath("//input[@alt='需要申告']").click()
+        except:
+            ipo.driver.find_element_by_name("snkokSu").clear()
+            ipo.driver.find_element_by_name("snkokSu").send_keys('100')
+            ipo.driver.find_element_by_name("実行").click()
+            ipo.screenshot()
+            ipo.driver.find_element_by_xpath("//input[@alt='需要申告']").click()
+            
         ipo.screenshot()
         print("SMBC日興証券IPO("+str(i)+")に申し込みました", file=sys.stderr)
 

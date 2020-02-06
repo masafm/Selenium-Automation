@@ -10,12 +10,7 @@ try:
     ipo.driver.find_element_by_id("PWInputKB").send_keys(ipo.decrypt(ipo.args.password))
     ipo.driver.find_element_by_name("send").click()
 
-    ipo_list = []
-    ipo.driver.find_element_by_link_text("お取引").click()
-    ipo.driver.find_element_by_link_text("IPO/PO(募集・売出し銘柄)").click()
-    ipo_list = ipo.driver.find_elements_by_link_text("申込")
-    
-    for i in range(len(ipo_list)):
+    for i in range(5):
         ipo.driver.find_element_by_link_text("お取引").click()
         ipo.driver.find_element_by_link_text("IPO/PO(募集・売出し銘柄)").click()
         try:

@@ -18,6 +18,21 @@ try:
             ipo.driver.find_element_by_link_text("需要申告").click()
         except:
             break
+        try:
+            ipo.driver.implicitly_wait(3)
+            pdf = ipo.driver.find_elements_by_xpath("//td[@class='al-l']/a")
+            print(pdf)
+            for p in pdf:
+                p.click()
+                handle_array = ipo.driver.window_handles
+                ipo.driver.switch_to.window(handle_array[-1])
+                ipo.driver.switch_to.frame(ipo.driver.find_element_by_xpath("//frame[@name='CT']"))
+                ipo.driver.find_element_by_xpath("//a[contains(text(), '確認しました')]").click()
+                
+            ipo.driver.find_element_by_xpath("//input[@value='全て閲覧済み']").click()
+        except:
+            pass
+        
         ipo.driver.find_element_by_id("orderNominal").send_keys("100")
         ipo.driver.find_element_by_id("n1").click()
         ipo.driver.find_element_by_xpath("//input[@value='次へ（申告内容確認）']").click()
