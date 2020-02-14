@@ -14,8 +14,10 @@ try:
         ipo.driver.find_element_by_link_text("株式取引").click()
         ipo.driver.find_element_by_link_text("新規公開株(IPO)").click()
         ipo.driver.find_element_by_link_text("銘柄一覧（ブックビルディング参加）").click()
+        ipo.driver.find_element_by_xpath("(//table[@class='table-block type-bg-02 type-border-01'])[1]").click()
+
         try:
-            ipo.driver.find_element_by_link_text("需要申告").click()
+            ipo.driver.find_element_by_xpath("(//table[@class='table-block type-bg-02 type-border-01'])[1]//a[contains(text(),'需要申告')]").click()
         except:
             break
         try:
