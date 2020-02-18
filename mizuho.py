@@ -18,11 +18,20 @@ try:
             ipo.driver.find_element_by_xpath("(//table[@class='tblMod02 mgt10t'])[1]//a[contains(text(),'申込')]").click()
         except:
             break
-        pdf = ipo.driver.find_elements_by_class_name("iPdf01")
+        pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
         for p in pdf:
             p.click()
         ipo.driver.find_element_by_name("send").click()
         ipo.driver.find_element_by_name("send").click()
+        try:
+            ipo.driver.find_element_by_name("send").click()
+            pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
+            for p in pdf:
+                p.click()
+            ipo.driver.find_element_by_name("send").click()
+            ipo.driver.find_element_by_name("send").click()
+        except:
+            break
         ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").send_keys('1')
         ipo.driver.find_element_by_name("kakakuFeedbackPanelParent:nedanRadioChoice").click()
         ipo.driver.find_element_by_name("send").click()
