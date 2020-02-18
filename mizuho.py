@@ -18,24 +18,25 @@ try:
             ipo.driver.find_element_by_xpath("(//table[@class='tblMod02 mgt10t'])[1]//a[contains(text(),'申込')]").click()
         except:
             break
-        pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
-        for p in pdf:
-            p.click()
-        ipo.driver.find_element_by_name("send").click()
-        ipo.driver.find_element_by_name("send").click()
-        try:
+        ipo.driver.implicitly_wait(5)
+        for j in range(5):
             ipo.driver.find_element_by_name("send").click()
-            pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
-            for p in pdf:
-                p.click()
-            ipo.driver.find_element_by_name("send").click()
-            ipo.driver.find_element_by_name("send").click()
-        except:
-            break
+            try:
+                pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
+                for p in pdf:
+                    p.click()
+            except:
+                pass
+            try:
+                ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value")
+                break
+            except:
+                pass
+        ipo.driver.implicitly_wait(30)
         ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").send_keys('1')
         ipo.driver.find_element_by_name("kakakuFeedbackPanelParent:nedanRadioChoice").click()
         ipo.driver.find_element_by_name("send").click()
-        ipo.driver.implicitly_wait(3)
+        ipo.driver.implicitly_wait(5)
         try:
             ipo.driver.find_element_by_name("ansyouBangouFeedbackPanelParent:ansyouBangou").send_keys(ipo.decrypt(ipo.args.password2))
         except:
