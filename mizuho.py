@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from common import IPO
 import sys
+import time
 
 ipo = IPO('mizuho')
 
@@ -22,9 +23,19 @@ try:
         ipo.driver.find_element_by_xpath("//input[@value='同意する']").click()
         try:
             ipo.driver.find_element_by_xpath("//input[@value='電子交付を承認する']").click()
+        except:
+            pass
+        try:
+            ipo.driver.find_element_by_xpath("//input[@id='doui']").click()
+            time.sleep(2)
+            ipo.driver.find_element_by_xpath("//input[@value='目論見書を閲覧する']").click()
+        except:
+            pass
+        try:
             pdf = ipo.driver.find_elements_by_xpath("//a[contains(@href,'.pdf')]")
             for p in pdf:
                 p.click()
+            time.sleep(30)
             ipo.driver.find_element_by_xpath("//input[@value='内容を理解した']").click()
         except:
             pass
