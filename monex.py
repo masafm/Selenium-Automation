@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from common import IPO
 import sys
+import time
 
 ipo = IPO('monex')
 
@@ -28,10 +29,13 @@ try:
                 handle_array = ipo.driver.window_handles
                 ipo.driver.switch_to.window(handle_array[-1])
                 ipo.driver.switch_to.frame(ipo.driver.find_element_by_xpath("//frame[@name='CT']"))
+                time.sleep(3)
                 ipo.driver.find_element_by_xpath("//a[contains(text(), '確認しました')]").click()
         except:
             pass
         try:                
+            handle_array = ipo.driver.window_handles
+            ipo.driver.switch_to.window(handle_array[0])
             ipo.driver.find_element_by_xpath("//input[@value='全て閲覧済み']").click()
         except:
             pass
