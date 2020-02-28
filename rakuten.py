@@ -9,7 +9,7 @@ try:
     ipo.driver.get('https://www.rakuten-sec.co.jp/')
     ipo.driver.find_element_by_id("form-login-id").send_keys(ipo.args.user)
     ipo.driver.find_element_by_id("form-login-pass").send_keys(ipo.decrypt(ipo.args.password))
-    ipo.driver.find_element_by_xpath("//button[contains(.,' ログイン')]").click()
+    ipo.driver.find_element_by_class_name("s3-form-login__btn").click()
 
     for i in range(5):
         ipo.driver.find_element_by_link_text("国内株式").click()
