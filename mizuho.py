@@ -39,19 +39,20 @@ try:
             ipo.driver.find_element_by_xpath("//input[@value='内容を理解した']").click()
         except:
             pass
-        ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").send_keys('1')
-        ipo.driver.find_element_by_name("kakakuFeedbackPanelParent:nedanRadioChoice").click()
-        ipo.driver.find_element_by_xpath("//input[@value='申込確認画面へ']").click()
+
         ipo.driver.implicitly_wait(5)
-        try:
-            ipo.driver.find_element_by_name("ansyouBangouFeedbackPanelParent:ansyouBangou").send_keys(ipo.decrypt(ipo.args.password2))
-        except:
-            ipo.driver.implicitly_wait(30)
+        kabu_su=['1','100','200']
+        for k in kabu_su:
             ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").clear()
-            ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").send_keys('100')
+            ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").send_keys(k)
             ipo.driver.find_element_by_name("kakakuFeedbackPanelParent:nedanRadioChoice").click()
             ipo.driver.find_element_by_xpath("//input[@value='申込確認画面へ']").click()
-            ipo.driver.find_element_by_name("ansyouBangouFeedbackPanelParent:ansyouBangou").send_keys(ipo.decrypt(ipo.args.password2))
+            try:
+                ipo.driver.find_element_by_name("ansyouBangouFeedbackPanelParent:ansyouBangou").send_keys(ipo.decrypt(ipo.args.password2))
+            except:
+                continue
+            break
+                
         ipo.driver.implicitly_wait(30)
         ipo.screenshot()
         ipo.driver.find_element_by_xpath("//input[@value='説明を理解し抽選参加する']").click()
