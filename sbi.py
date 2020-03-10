@@ -19,7 +19,7 @@ try:
             ipo.driver.find_element_by_xpath("//img[@alt='申込']").click()
         except:
             break
-        ipo.driver.find_element_by_name("suryo").send_keys("100000")
+        ipo.driver.find_element_by_name("suryo").send_keys("10000")
         ipo.driver.find_element_by_id("strPriceRadio").click()
         ipo.driver.find_element_by_id("ipoRadio1").click()
         ipo.driver.find_element_by_name("tr_pass").send_keys(ipo.decrypt(ipo.args.password2))
