@@ -23,6 +23,10 @@ try:
         ipo.driver.find_element_by_xpath("//button[@title='もう一度、ログインする']").click()
     except:
         pass
+    try:
+        ipo.driver.find_element_by_xpath("//button[@title='次へ']").click()
+    except:
+        pass
 
     ipo.driver.find_element_by_xpath("//a/span[.='取引・照会']").click()
     ipo.driver.find_element_by_link_text("申込").click()
