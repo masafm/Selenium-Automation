@@ -11,9 +11,7 @@ try:
     ipo.driver.find_element_by_name("buttonLogin").click()
     try:
         # 最初のお知らせスキップ
-        ipo.driver.implicitly_wait(3)
         ipo.driver.find_element_by_name("buttonTop").click()
-        ipo.driver.implicitly_wait(30)
     except:
         pass
     

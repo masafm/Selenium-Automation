@@ -18,7 +18,7 @@ class IPO:
         self.args = parser.parse_args()
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(5)
 
     def decrypt(self, value):
         return xc.decrypt(value, self.args.key)

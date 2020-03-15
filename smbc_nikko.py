@@ -19,7 +19,6 @@ try:
     except:
         pass
 
-    ipo.driver.implicitly_wait(5)
     for i in range(len(ipo_list)):
         ipo.driver.get('https://trade.smbcnikko.co.jp/MoneyManagement/9404K0821255/ez_ipo/meigara/ichiran')
         ipo.driver.find_elements_by_xpath("//img[@alt='需要申告受付中']")[i].click()

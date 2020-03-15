@@ -40,7 +40,6 @@ try:
         except:
             pass
 
-        ipo.driver.implicitly_wait(5)
         kabu_su=['1','100','200']
         for k in kabu_su:
             ipo.driver.find_element_by_name("kabuSuFeedbackPanelParent:mousikomiKabusuu:base:_value").clear()
@@ -53,7 +52,6 @@ try:
                 continue
             break
                 
-        ipo.driver.implicitly_wait(30)
         ipo.screenshot()
         ipo.driver.find_element_by_xpath("//input[@value='説明を理解し抽選参加する']").click()
         ipo.screenshot()

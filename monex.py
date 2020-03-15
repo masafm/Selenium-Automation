@@ -22,7 +22,6 @@ try:
         except:
             break
         try:
-            ipo.driver.implicitly_wait(3)
             pdf = ipo.driver.find_elements_by_xpath("//td[@class='al-l']/a")
             for p in pdf:
                 p.click()

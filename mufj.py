@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from common import IPO
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 import sys
 import time
 
@@ -18,7 +19,6 @@ try:
     ipo.driver.find_element_by_id("accountNumber").send_keys(ipo.args.user)
     ipo.driver.find_element_by_id("password").send_keys(ipo.decrypt(ipo.args.password))
     ipo.driver.find_element_by_xpath("//button[@title='ログイン']").click()
-    ipo.driver.implicitly_wait(5)
     try:
         ipo.driver.find_element_by_xpath("//button[@title='もう一度、ログインする']").click()
     except:
