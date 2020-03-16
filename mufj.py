@@ -47,7 +47,7 @@ try:
         click(ipo.driver.find_element_by_xpath("//label[contains(.,'はい')]"))
         click(ipo.driver.find_element_by_xpath("//button[@title='同意して次に進む']"))
         ipo.driver.find_element_by_name("prm_unit").send_keys('100')
-        ipo.driver.find_element_by_xpath("//button[@title='申込内容を確認する']").click()
+        click(ipo.driver.find_element_by_xpath("//button[@title='申込内容を確認する']"))
         try:
             ipo.driver.find_element_by_name("prm_password").send_keys(ipo.decrypt(ipo.args.password2))
         except:
