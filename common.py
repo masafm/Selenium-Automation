@@ -2,6 +2,7 @@
 import os
 import sys
 import argparse
+import time
 from datetime import datetime as d
 from selenium import webdriver
 import xorcrypt as xc
@@ -27,6 +28,7 @@ class IPO:
         path = os.environ['HOME']+'/screenshot/'+self.name+'.'+d.today().strftime("%Y%m%d%H%M%S")+'.png'
         print(path, file=sys.stderr)
         self.driver.save_screenshot(path)
+        time.sleep(1)
 
     def save_source(self):
         path = os.environ['HOME']+'/screenshot/'+self.name+'.'+d.today().strftime("%Y%m%d%H%M%S")+'.html'
