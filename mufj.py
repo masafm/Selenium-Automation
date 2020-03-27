@@ -28,8 +28,8 @@ try:
     except:
         pass
 
-    ipo.driver.find_element_by_xpath("//a/span[.='取引・照会']").click()
-    ipo.driver.find_element_by_link_text("申込").click()
+    click(ipo.driver.find_element_by_xpath("//a/span[.='取引・照会']"))
+    click(ipo.driver.find_element_by_link_text("申込"))
     ipo_list = []
     try:
         ipo_list = ipo.driver.find_elements_by_xpath("//a[@title='申込']")
