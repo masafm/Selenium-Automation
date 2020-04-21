@@ -43,6 +43,6 @@ try:
     ipo.driver.find_element_by_id("UNQ_orbutton_18").click()
     time.sleep(5)
 except:
-    ipo.exit_on_err()
+    pass
 
 ipo.driver.quit()
