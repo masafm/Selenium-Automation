@@ -14,7 +14,10 @@ try:
         ipo.driver.find_element_by_xpath("//img[@alt='ホーム']").click()
         ipo.driver.find_element_by_xpath("//img[@alt='国内株式']").click()
         ipo.driver.find_element_by_link_text("IPO・PO").click()
-        ipo.driver.find_element_by_xpath("//img[@alt='新規上場株式ブックビルディング / 購入意思表示']").click()
+        try:
+            ipo.driver.find_element_by_xpath("//img[@alt='新規上場株式ブックビルディング / 購入意思表示']").click()
+        except:
+            ipo.driver.quit()
         try:
             ipo.driver.find_element_by_xpath("//img[@alt='申込']").click()
         except:
