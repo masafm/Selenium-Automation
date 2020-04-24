@@ -15,6 +15,10 @@ try:
     ipo.driver.find_element_by_xpath("//a[text()='投票']").click()
     handle_array = ipo.driver.window_handles
     ipo.driver.switch_to.window(handle_array[-1])
+    try:
+        ipo.driver.find_element_by_id("newsoverviewdispCloseButton").click()
+    except:
+        pass
     ipo.driver.find_element_by_xpath("//a/span[text()='入金・精算']").click()
     ipo.driver.find_element_by_xpath("//a[text()='入金する']").click()
     ipo.driver.find_element_by_id("chargeInstructAmt").send_keys('1')
