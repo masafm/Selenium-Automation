@@ -14,8 +14,8 @@ try:
     for i in range(5):
         ipo.driver.find_element_by_link_text("お取引").click()
         ipo.driver.find_element_by_link_text("IPO/PO(募集・売出し銘柄)").click()
-        ipo.driver.find_element_by_xpath("(//table[@class='tblMod02 mgt10t'])[1]").click()
         try:
+            ipo.driver.find_element_by_xpath("(//table[@class='tblMod02 mgt10t'])[1]").click()
             ipo.driver.find_element_by_xpath("(//table[@class='tblMod02 mgt10t'])[1]//a[contains(text(),'申込')]").click()
         except:
             break
