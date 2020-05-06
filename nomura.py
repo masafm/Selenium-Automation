@@ -1,40 +1,40 @@
 #!/usr/bin/python3
-from common import IPO
+from common import Automation
 import sys
 
-ipo = IPO('nomura')
+a = Automation('nomura')
 
 try:
-    ipo.driver.get('https://hometrade.nomura.co.jp/web/rmfIndexWebAction.do?loginType=1')
-    ipo.driver.find_element_by_id("text01").send_keys(ipo.args.user)
-    ipo.driver.find_element_by_id("passwd1").send_keys(ipo.decrypt(ipo.args.password))
-    ipo.driver.find_element_by_name("buttonLogin").click()
+    a.driver.get('https://hometrade.nomura.co.jp/web/rmfIndexWebAction.do?loginType=1')
+    a.driver.find_element_by_id("text01").send_keys(a.args.user)
+    a.driver.find_element_by_id("passwd1").send_keys(a.decrypt(a.args.password))
+    a.driver.find_element_by_name("buttonLogin").click()
     try:
         # 最初のお知らせスキップ
-        ipo.driver.find_element_by_name("buttonTop").click()
+        a.driver.find_element_by_name("buttonTop").click()
     except:
         pass
     
     for i in range(5):
-        ipo.driver.find_element_by_link_text("取引").click()
-        ipo.driver.find_element_by_link_text("IPO/PO").click()
+        a.driver.find_element_by_link_text("取引").click()
+        a.driver.find_element_by_link_text("IPO/PO").click()
         try:
-            ipo.driver.find_element_by_xpath("//a[contains(text(), '抽選申込へ')]").click();
+            a.driver.find_element_by_xpath("//a[contains(text(), '抽選申込へ')]").click();
         except:
             break
-        checkboxes = ipo.driver.find_elements_by_xpath("//input[@type='checkbox']")
+        checkboxes = a.driver.find_elements_by_xpath("//input[@type='checkbox']")
         for c in checkboxes:
             c.click()
-        ipo.driver.find_element_by_xpath("//button[@name='buttonAgree']").click()
-        ipo.driver.find_element_by_class_name("apl-js-cmspsp").click()
-        ipo.driver.find_element_by_xpath("//button[@name='buttonAgree']").click()
-        ipo.driver.find_element_by_xpath("//button[@name='buttonConfirm']").click()
-        ipo.driver.find_element_by_name("trhkPswd").send_keys(ipo.decrypt(ipo.args.password2))
-        ipo.screenshot()
-        ipo.driver.find_element_by_xpath("//button[@name='buttonAccept']").click()
-        ipo.screenshot()
+        a.driver.find_element_by_xpath("//button[@name='buttonAgree']").click()
+        a.driver.find_element_by_class_name("apl-js-cmspsp").click()
+        a.driver.find_element_by_xpath("//button[@name='buttonAgree']").click()
+        a.driver.find_element_by_xpath("//button[@name='buttonConfirm']").click()
+        a.driver.find_element_by_name("trhkPswd").send_keys(a.decrypt(a.args.password2))
+        a.screenshot()
+        a.driver.find_element_by_xpath("//button[@name='buttonAccept']").click()
+        a.screenshot()
         print("野村証券IPO("+str(i)+")に申し込みました", file=sys.stderr)
         
-    ipo.driver.quit()
+    a.driver.quit()
 except:
-    ipo.exit_on_err()
+    a.exit_on_err()

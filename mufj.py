@@ -1,40 +1,40 @@
 #!/usr/bin/python3
-from common import IPO
+from common import Automation
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import sys
 import time
 
-ipo = IPO('mufj')
+a = Automation('mufj')
 
 def click(target):
-    actions = ActionChains(ipo.driver)
+    actions = ActionChains(a.driver)
     actions.move_to_element(target)
     actions.perform()
-    ipo.driver.execute_script("window.scrollBy(0, 100);")
+    a.driver.execute_script("window.scrollBy(0, 100);")
     target.click()    
 
 try:
-    ipo.driver.get('https://online.sc.mufg.jp/its/dfw/UTBSITS/user_p/Login')
-    ipo.driver.find_element_by_id("accountNumber").send_keys(ipo.args.user)
-    ipo.driver.find_element_by_id("password").send_keys(ipo.decrypt(ipo.args.password))
-    ipo.driver.find_element_by_xpath("//button[@title='ログイン']").click()
+    a.driver.get('https://online.sc.mufg.jp/its/dfw/UTBSITS/user_p/Login')
+    a.driver.find_element_by_id("accountNumber").send_keys(a.args.user)
+    a.driver.find_element_by_id("password").send_keys(a.decrypt(a.args.password))
+    a.driver.find_element_by_xpath("//button[@title='ログイン']").click()
     try:
-        ipo.driver.find_element_by_xpath("//button[@title='もう一度、ログインする']").click()
+        a.driver.find_element_by_xpath("//button[@title='もう一度、ログインする']").click()
     except:
         pass
     for i in range(5):
         try:
-            ipo.driver.find_element_by_xpath("//button[@title='次へ']").click()
+            a.driver.find_element_by_xpath("//button[@title='次へ']").click()
             continue
         except:
             break
 
-    click(ipo.driver.find_element_by_xpath("//a/span[.='取引・照会']"))
-    click(ipo.driver.find_element_by_link_text("申込"))
+    click(a.driver.find_element_by_xpath("//a/span[.='取引・照会']"))
+    click(a.driver.find_element_by_link_text("申込"))
     ipo_list = []
     try:
-        ipo_list = ipo.driver.find_elements_by_xpath("//a[@title='申込']")
+        ipo_list = a.driver.find_elements_by_xpath("//a[@title='申込']")
     except:
         pass
 
@@ -43,24 +43,24 @@ try:
         length = len(ipo_list)
         
     for i in range(length):
-        ipo.driver.find_element_by_xpath("//a/span[.='取引・照会']").click()
-        ipo.driver.find_element_by_link_text("申込").click()
-        click(ipo.driver.find_elements_by_xpath("//a[@title='申込']")[i])
-        click(ipo.driver.find_element_by_xpath("//label[contains(.,'はい')]"))
-        click(ipo.driver.find_element_by_xpath("//button[@title='同意して次に進む']"))
-        ipo.driver.find_element_by_name("prm_unit").send_keys('100')
-        click(ipo.driver.find_element_by_xpath("//button[@title='申込内容を確認する']"))
+        a.driver.find_element_by_xpath("//a/span[.='取引・照会']").click()
+        a.driver.find_element_by_link_text("申込").click()
+        click(a.driver.find_elements_by_xpath("//a[@title='申込']")[i])
+        click(a.driver.find_element_by_xpath("//label[contains(.,'はい')]"))
+        click(a.driver.find_element_by_xpath("//button[@title='同意して次に進む']"))
+        a.driver.find_element_by_name("prm_unit").send_keys('100')
+        click(a.driver.find_element_by_xpath("//button[@title='申込内容を確認する']"))
         try:
-            ipo.driver.find_element_by_name("prm_password").send_keys(ipo.decrypt(ipo.args.password2))
+            a.driver.find_element_by_name("prm_password").send_keys(a.decrypt(a.args.password2))
         except:
-            ipo.driver.find_element_by_xpath("//a[@title='トップに戻る']").click()
+            a.driver.find_element_by_xpath("//a[@title='トップに戻る']").click()
             continue
             
-        ipo.screenshot()
-        ipo.driver.find_element_by_xpath("//button[@title='申込を送信する']").click()
-        ipo.screenshot()    
+        a.screenshot()
+        a.driver.find_element_by_xpath("//button[@title='申込を送信する']").click()
+        a.screenshot()    
         print("三菱UFJモルガン・スタンレー証券IPO("+str(i)+")に申し込みました", file=sys.stderr)
     
-    ipo.driver.quit()
+    a.driver.quit()
 except:
-    ipo.exit_on_err()
+    a.exit_on_err()

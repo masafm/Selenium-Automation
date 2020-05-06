@@ -1,3 +1,3 @@
-# ipo_automation
-各証券会社のIPOに自動で申し込むためのSeleniumスクリプト
+# selenium_automation
+各証券会社のIPO等に自動で申し込むためのSeleniumスクリプト
 そのうちちゃんとREADME書く

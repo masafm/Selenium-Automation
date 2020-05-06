@@ -7,7 +7,7 @@ from datetime import datetime as d
 from selenium import webdriver
 import xorcrypt as xc
 
-class IPO:
+class Automation:
     def __init__(self, name):
         self.name = name
         parser = argparse.ArgumentParser(description='')

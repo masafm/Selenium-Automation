@@ -1,31 +1,31 @@
 #!/usr/bin/python3
-from common import IPO
+from common import Automation
 from selenium.webdriver.common.keys import Keys
 import sys
 import time
 
-ipo = IPO('rakuten_boat')
+a = Automation('rakuten_boat')
 
 try:
-    ipo.driver.get('https://www.boatrace.jp/owpc/pc/login?authAfterUrl=/')
-    ipo.driver.find_element_by_name("in_KanyusyaNo").send_keys(ipo.args.user)
-    ipo.driver.find_element_by_name("in_AnsyoNo").send_keys(ipo.decrypt(ipo.args.password))
-    ipo.driver.find_element_by_name("in_PassWord").send_keys(ipo.decrypt(ipo.args.password2))
-    ipo.driver.find_element_by_xpath("//button[text()='ログインする']").click()
-    ipo.driver.find_element_by_xpath("//a[text()='投票']").click()
-    handle_array = ipo.driver.window_handles
-    ipo.driver.switch_to.window(handle_array[-1])
+    a.driver.get('https://www.boatrace.jp/owpc/pc/login?authAfterUrl=/')
+    a.driver.find_element_by_name("in_KanyusyaNo").send_keys(a.args.user)
+    a.driver.find_element_by_name("in_AnsyoNo").send_keys(a.decrypt(a.args.password))
+    a.driver.find_element_by_name("in_PassWord").send_keys(a.decrypt(a.args.password2))
+    a.driver.find_element_by_xpath("//button[text()='ログインする']").click()
+    a.driver.find_element_by_xpath("//a[text()='投票']").click()
+    handle_array = a.driver.window_handles
+    a.driver.switch_to.window(handle_array[-1])
     try:
-        ipo.driver.find_element_by_id("newsoverviewdispCloseButton").click()
+        a.driver.find_element_by_id("newsoverviewdispCloseButton").click()
     except:
         pass
-    ipo.driver.find_element_by_xpath("//a/span[text()='入金・精算']").click()
-    ipo.driver.find_element_by_xpath("//a[text()='入金する']").click()
-    ipo.driver.find_element_by_id("chargeInstructAmt").send_keys('1')
-    ipo.driver.find_element_by_id("chargeBetPassword").send_keys(ipo.decrypt(ipo.args.store))
-    ipo.driver.find_element_by_xpath("//div[@id='payment']//a[text()='入金する']").click()
-    ipo.driver.find_element_by_id("ok").click()
+    a.driver.find_element_by_xpath("//a/span[text()='入金・精算']").click()
+    a.driver.find_element_by_xpath("//a[text()='入金する']").click()
+    a.driver.find_element_by_id("chargeInstructAmt").send_keys('1')
+    a.driver.find_element_by_id("chargeBetPassword").send_keys(a.decrypt(a.args.store))
+    a.driver.find_element_by_xpath("//div[@id='payment']//a[text()='入金する']").click()
+    a.driver.find_element_by_id("ok").click()
     time.sleep(5)
-    ipo.driver.quit()
+    a.driver.quit()
 except:
-    ipo.exit_on_err()
+    a.exit_on_err()
