@@ -19,7 +19,7 @@ try:
         a.driver.find_element_by_id("welcome_close_button").click()
     except:
         pass
-    likes = a.driver.find_elements_by_xpath("//p[contains(text(), '今日のピックアップとは？')]//span[contains(text(), '無料でいいね!')]")
+    likes = a.driver.find_elements_by_xpath("//p[contains(text(), '今日のピックアップとは？')]//..//span[contains(text(), '無料でいいね!')]")
     time.sleep(10)
     for l in likes:
         action = webdriver.common.action_chains.ActionChains(a.driver)
@@ -30,7 +30,7 @@ try:
         except:
             continue
         try:
-            a.driver.find_element_by_xpath("//p[contains(text(), '「いいね！」を送りますか？')]/span[contains(text(), '無料で')]").click()
+            a.driver.find_element_by_xpath("//p[contains(text(), '「いいね！」を送りますか？')]//..//span[contains(text(), '無料で')]").click()
         except:
             a.driver.find_element_by_xpath("//div[@id='like_question_answer_modal']//img").click()
         time.sleep(3)
