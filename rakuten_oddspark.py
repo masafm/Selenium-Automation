@@ -16,6 +16,10 @@ try:
         a.driver.find_element_by_name("送信").click()
     except:
         pass
+except:
+    a.exit_on_err()
+
+try:
     a.driver.get('https://www.oddspark.com/auth/NyukinMenu.do')
     a.driver.find_element_by_xpath("//a[.='精算する']").click()
     a.driver.find_element_by_name("touhyoPassword").send_keys(a.decrypt(a.args.password2))
@@ -25,15 +29,6 @@ except:
     pass
 
 try:
-    a.driver.get('https://www.oddspark.com/OpTop.do?SSO_FORCE_LOGIN=1&SSO_URL_RETURN=https://www.oddspark.com/')
-    a.driver.find_element_by_name("SSO_ACCOUNTID").send_keys(a.args.user)
-    a.driver.find_element_by_name("SSO_PASSWORD").send_keys(a.decrypt(a.args.password))
-    a.driver.execute_script("formSubmit();")
-    try:
-        a.driver.find_element_by_name("INPUT_PIN").send_keys(a.decrypt(a.args.password2))
-        a.driver.find_element_by_name("送信").click()
-    except:
-        pass
     a.driver.get('https://www.oddspark.com/auth/NyukinMenu.do')
     a.driver.find_element_by_xpath("//a[.='入金する']").click()
     a.driver.find_element_by_name("nyukin").send_keys('1')
