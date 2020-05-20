@@ -13,6 +13,7 @@ try:
 
     for i in range(5):
         a.driver.find_element_by_xpath("//span[contains(.,'取引')]").click()
+        a.driver.find_element_by_xpath("//a[@title='IPO/PO']").click()
         a.driver.find_element_by_xpath("//a[@title='IPO/PO注文']").click()
         try:
             a.driver.find_element_by_xpath("//div[@id='TrdStkIpoLst_ListIPO_block']//a[contains(text(),'抽選申込へ')]").click()
