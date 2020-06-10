@@ -5,6 +5,7 @@ import argparse
 import time
 from datetime import datetime as d
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import xorcrypt as xc
 
 class Automation:
@@ -17,7 +18,9 @@ class Automation:
         parser.add_argument('--store')
         parser.add_argument('--password2')
         self.args = parser.parse_args()
-        self.driver = webdriver.Chrome()
+        options = Options()
+        options.binary_location = "/usr/bin/chromium-browser"
+        self.driver = webdriver.Chrome(options=options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
 

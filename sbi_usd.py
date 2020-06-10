@@ -13,7 +13,7 @@ try:
     a.driver.find_element_by_name("ACT_login").click()
     
     a.driver.find_element_by_xpath("//img[@alt='口座管理']").click()
-    a.driver.find_element_by_link_text("口座（外貨建）").click()
+    a.driver.find_element_by_xpath("//a[.='口座（外貨建）']").click()
     usd = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[1]/td[2]").text.replace(',','')
     jpy = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[2]/td[2]").text.replace(',','')
     date = dt.now().strftime('%Y/%m/%d')
