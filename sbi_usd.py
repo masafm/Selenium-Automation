@@ -3,6 +3,7 @@ from common import Automation
 from datetime import datetime as dt
 import sys
 import os
+import time
 
 a = Automation('sbi_usd')
 
@@ -11,6 +12,7 @@ try:
     a.driver.find_element_by_name("user_id").send_keys(a.args.user)
     a.driver.find_element_by_name("user_password").send_keys(a.decrypt(a.args.password))
     a.driver.find_element_by_name("ACT_login").click()
+    time.sleep(3)
     
     a.driver.find_element_by_xpath("//img[@alt='口座管理']").click()
     a.driver.find_element_by_xpath("//a[.='口座（外貨建）']").click()

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from common import Automation
 import sys
+import time
 
 a = Automation('sbi')
 
@@ -9,6 +10,7 @@ try:
     a.driver.find_element_by_name("user_id").send_keys(a.args.user)
     a.driver.find_element_by_name("user_password").send_keys(a.decrypt(a.args.password))
     a.driver.find_element_by_name("ACT_login").click()
+    time.sleep(3)
     
     for i in range(5):
         a.driver.find_element_by_xpath("//img[@alt='ホーム']").click()
