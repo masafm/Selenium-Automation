@@ -8,7 +8,7 @@ a = Automation('pairs')
 
 try:
     a.driver.get('https://pairs.lv/#/login')
-    a.driver.find_element_by_class_name("login_button_a").click()
+    a.driver.find_element_by_xpath("//span[.='Facebookでログ").click()
     handle_array = a.driver.window_handles
     a.driver.switch_to.window(handle_array[-1])
     a.driver.find_element_by_id("email").send_keys(a.args.user)

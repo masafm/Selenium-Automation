@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import sys
 import time
 
-a = Automation('rakuten_oddspark')
+a = Automation('rakuten_oddspark_out')
 
 try:
     a.driver.get('https://www.oddspark.com/OpTop.do?SSO_FORCE_LOGIN=1&SSO_URL_RETURN=https://www.oddspark.com/')
@@ -18,13 +18,12 @@ try:
         pass
 
     a.driver.get('https://www.oddspark.com/auth/NyukinMenu.do')
-    a.driver.find_element_by_xpath("//a[.='入金する']").click()
-    a.driver.find_element_by_name("nyukin").send_keys('1')
-    a.driver.find_element_by_xpath("//a[.='次へ']").click()
+    a.driver.find_element_by_xpath("//a[.='精算する']").click()
     a.driver.find_element_by_name("touhyoPassword").send_keys(a.decrypt(a.args.password2))
-    a.driver.find_element_by_xpath("//a[.='入金']").click()
+    a.driver.find_element_by_xpath("//a[.='精算']").click()
     time.sleep(5)
 
     a.driver.quit()
 except:
     a.exit_on_err()
+
