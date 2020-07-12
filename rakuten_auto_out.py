@@ -15,12 +15,13 @@ try:
     a.driver.find_element_by_name("passNo").send_keys(a.decrypt(a.args.password2))
     a.driver.find_element_by_name("btnWireOut").click()
     time.sleep(1)
-    a.driver.find_element_by_name("wireOutAmount").send_keys('700')
+    price = a.driver.find_element_by_xpath("//*[.='精算可能金額']/../td[1]").text.replace('円','')
+    a.driver.find_element_by_name("wireOutAmount").send_keys(price)
     a.driver.find_element_by_name("refer").click()
     time.sleep(1)
     a.driver.switch_to.alert.accept()
     time.sleep(5)
+
+    a.driver.quit()
 except:
     a.exit_on_err()
-
-a.driver.quit()
