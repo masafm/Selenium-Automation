@@ -17,7 +17,7 @@ try:
     a.driver.switch_to.window(handle_array[0])
 
     for i in range(4):
-        a.driver.find_elements_by_xpath("//*[.='無料で']").click()
+        a.driver.find_element_by_xpath("//*[.='無料で']").click()
         time.sleep(3)
 
 #    for i in range(1,10):
