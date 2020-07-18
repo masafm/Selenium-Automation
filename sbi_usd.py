@@ -19,7 +19,7 @@ try:
     action.move_to_element_with_offset(link, 1, 1)
     action.click()
     action.perform()
-    link = a.driver.find_element_by_xpath("//a[.='口座（外貨建）']")
+    link = a.driver.find_element_by_xpath("//div[@id='navi02P']//a[.='口座（外貨建）']")
     action = webdriver.common.action_chains.ActionChains(a.driver)
     action.move_to_element_with_offset(link, 1, 1)
     action.click()
