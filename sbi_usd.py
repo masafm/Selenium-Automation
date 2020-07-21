@@ -28,7 +28,7 @@ try:
     jpy = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[2]/td[2]").text.replace(',','')
     date = dt.now().strftime('%Y/%m/%d')
     with open(os.environ['HOME']+'/sbi_usd.csv', mode='a') as file:
-        file.write(date+',損益確認,,,,,,'+jpy+','+usd+'\n')
+        file.write(date+',損益確認,,,,,,'+jpy+',,'+usd+'\n')
     a.driver.quit()
 except:
     a.exit_on_err()
