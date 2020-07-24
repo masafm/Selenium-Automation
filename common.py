@@ -17,6 +17,7 @@ class Automation:
         parser.add_argument('password')
         parser.add_argument('--store')
         parser.add_argument('--password2')
+        parser.add_argument('--spreadsheet')
         self.args = parser.parse_args()
         options = Options()
         options.binary_location = "/usr/bin/chromium-browser"
