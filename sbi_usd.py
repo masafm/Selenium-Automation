@@ -55,7 +55,7 @@ try:
     body = {
         "range": RANGE_NAME,
         "majorDimension": MAJOR_DIMENSION,
-        "values": list(csv.reader([date+',損益確認,,,,,,'+jpy+',,'+usd]))
+        "values": list(csv.reader([date+',損益確認,,,,,"=SUM($E$1:INDIRECT(ADDRESS(ROW(),5)))-SUM($C$1:INDIRECT(ADDRESS(ROW(),3)))",'+jpy+',"=SUM($F$2:INDIRECT(ADDRESS(ROW(),6)))-SUM($D$2:INDIRECT(ADDRESS(ROW(),4)))",'+usd+',"=IF(INDIRECT(ADDRESS(ROW(),8)),INDIRECT(ADDRESS(ROW(),8))-INDIRECT(ADDRESS(ROW(),7)), """")","=IF(INDIRECT(ADDRESS(ROW(),13))<>"""",(INDIRECT(ADDRESS(ROW(),7))/INDIRECT(ADDRESS(ROW(),14))-INDIRECT(ADDRESS(ROW(),7))/INDIRECT(ADDRESS(ROW(),13)))*INDIRECT(ADDRESS(ROW(),13)),INDIRECT(ADDRESS(ROW(),12)))","=IF(INDIRECT(ADDRESS(ROW(),5)), INDIRECT(ADDRESS(ROW(),5))/INDIRECT(ADDRESS(ROW(),6)), IF(INDIRECT(ADDRESS(ROW(),3)), INDIRECT(ADDRESS(ROW(),3))/INDIRECT(ADDRESS(ROW(),4)),IF(INDIRECT(ADDRESS(ROW(),10)),INDIRECT(ADDRESS(ROW(),8))/INDIRECT(ADDRESS(ROW(),10)),INDIRECT(ADDRESS(ROW(),13)))))","=G169/(SUM($F$1:INDIRECT(ADDRESS(ROW(),6)))-SUM($D$1:INDIRECT(ADDRESS(ROW(),4))))"']))
     }
     resource.append(spreadsheetId=a.args.spreadsheet, range=RANGE_NAME,
                     valueInputOption='USER_ENTERED', body=body).execute()
