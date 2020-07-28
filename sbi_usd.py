@@ -26,9 +26,13 @@ a = Automation('sbi_usd')
 
 try:
     a.driver.get('https://www.sbisec.co.jp/')
+    time.sleep(1)
     a.driver.find_element_by_name("user_id").send_keys(a.args.user)
+    time.sleep(1)
     a.driver.find_element_by_name("user_password").send_keys(a.decrypt(a.args.password))
+    time.sleep(1)
     a.driver.find_element_by_name("ACT_login").click()
+    time.sleep(3)
     
     a.driver.find_element_by_xpath("//img[@alt='口座管理']").click()
     time.sleep(3)
