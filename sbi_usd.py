@@ -22,6 +22,10 @@ CLIENT_SECRET_FILE = os.environ['HOME']+'/client_secret.json'
 CREDENTIAL_FILE = os.environ['HOME']+'/credential.json'
 APPLICATION_NAME = 'SBI USD Appender'
 
+def c(col):
+    index = {'A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','S':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    return 'INDIRECT(ADDRESS(ROW(),'+index[col]+'))'
+
 a = Automation('sbi_usd')
 
 try:
@@ -59,7 +63,15 @@ try:
     body = {
         "range": RANGE_NAME,
         "majorDimension": MAJOR_DIMENSION,
-        "values": list(csv.reader([date+',損益確認,,,,,"=SUM($E$1:INDIRECT(ADDRESS(ROW(),5)))-SUM($C$1:INDIRECT(ADDRESS(ROW(),3)))",'+jpy+',"=SUM($F$2:INDIRECT(ADDRESS(ROW(),6)))-SUM($D$2:INDIRECT(ADDRESS(ROW(),4)))",'+usd+',"=IF(INDIRECT(ADDRESS(ROW(),8)),INDIRECT(ADDRESS(ROW(),8))-INDIRECT(ADDRESS(ROW(),7)), """")","=IF(INDIRECT(ADDRESS(ROW(),13))<>"""",(INDIRECT(ADDRESS(ROW(),7))/INDIRECT(ADDRESS(ROW(),14))-INDIRECT(ADDRESS(ROW(),7))/INDIRECT(ADDRESS(ROW(),13)))*INDIRECT(ADDRESS(ROW(),13)),INDIRECT(ADDRESS(ROW(),12)))","=IF(INDIRECT(ADDRESS(ROW(),5)), INDIRECT(ADDRESS(ROW(),5))/INDIRECT(ADDRESS(ROW(),6)), IF(INDIRECT(ADDRESS(ROW(),3)), INDIRECT(ADDRESS(ROW(),3))/INDIRECT(ADDRESS(ROW(),4)),IF(INDIRECT(ADDRESS(ROW(),10)),INDIRECT(ADDRESS(ROW(),8))/INDIRECT(ADDRESS(ROW(),10)),INDIRECT(ADDRESS(ROW(),13)))))","=G169/(SUM($F$1:INDIRECT(ADDRESS(ROW(),6)))-SUM($D$1:INDIRECT(ADDRESS(ROW(),4))))"']))
+        "values": list(csv.reader([date+',損益確認,,,,,'+
+                                   '"=SUM($E$1:'+c('E')+')-SUM($C$1:'+c('C')+')",'+
+                                   jpy+','+
+                                   '"=SUM($F$2:'+c('F')+')-SUM($D$2:'+c('D')+')",'+
+                                   usd+','+
+                                   '"=IF('+c('H')+','+c('H')+'-'+c('G')+', """")",'+
+                                   '"=('+c('G')+'/'+c('N')+'-'+c('G')+'/'+c('M')+')*'+c('M')+'",'+
+                                   '"='+c('H')+'/'+c('J')+'",'+
+                                   '"='+c('G')+'/(SUM($F$1:'+c('F')+')-SUM($D$1:'+c('D')+'))"']))
     }
     resource.append(spreadsheetId=a.args.spreadsheet, range=RANGE_NAME,
                     valueInputOption='USER_ENTERED', body=body).execute()
