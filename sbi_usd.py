@@ -43,7 +43,7 @@ try:
     a.driver.find_element_by_xpath("//div[@id='navi02P']//a[.='口座（外貨建）']").click()
     usd = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[1]/td[2]").text.replace(',','')
     jpy = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[2]/td[2]").text.replace(',','')
-    date = dt.now().strftime('%Y/%m/%d')
+    date = dt.now().strftime('%Y/%m/%d %H:%M:%S')
 
     store = oauth2client.file.Storage(CREDENTIAL_FILE)
     credentials = store.get()
@@ -64,14 +64,14 @@ try:
         "range": RANGE_NAME,
         "majorDimension": MAJOR_DIMENSION,
         "values": list(csv.reader([date+',損益確認,,,,,'+
-                                   '"=SUM($E$1:'+c('E')+')-SUM($C$1:'+c('C')+')",'+
+                                   '"=SUM($E$2:'+c('E')+')-SUM($C$2:'+c('C')+')",'+
                                    jpy+','+
                                    '"=SUM($F$2:'+c('F')+')-SUM($D$2:'+c('D')+')",'+
                                    usd+','+
                                    '"=IF('+c('H')+','+c('H')+'-'+c('G')+', """")",'+
                                    '"=('+c('G')+'/'+c('N')+'-'+c('G')+'/'+c('M')+')*'+c('M')+'",'+
                                    '"='+c('H')+'/'+c('J')+'",'+
-                                   '"='+c('G')+'/(SUM($F$1:'+c('F')+')-SUM($D$1:'+c('D')+'))"']))
+                                   '"='+c('G')+'/(SUM($F$2:'+c('F')+')-SUM($D$2:'+c('D')+'))"']))
     }
     resource.append(spreadsheetId=a.args.spreadsheet, range=RANGE_NAME,
                     valueInputOption='USER_ENTERED', body=body).execute()
