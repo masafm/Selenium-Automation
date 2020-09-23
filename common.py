@@ -23,7 +23,7 @@ class Automation:
         options.binary_location = "/usr/bin/chromium-browser"
         self.driver = webdriver.Chrome(options=options)
         self.driver.maximize_window()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(15)
 
     def decrypt(self, value):
         return xc.decrypt(value, self.args.key)
