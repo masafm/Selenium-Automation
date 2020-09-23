@@ -71,7 +71,11 @@ try:
                                    '"=IF('+c('H')+','+c('H')+'-'+c('G')+', """")",'+
                                    '"=('+c('G')+'/'+c('N')+'-'+c('G')+'/'+c('M')+')*'+c('M')+'",'+
                                    '"='+c('H')+'/'+c('J')+'",'+
-                                   '"='+c('G')+'/(SUM($F$2:'+c('F')+')-SUM($D$2:'+c('D')+'))"']))
+                                   '"='+c('G')+'/(SUM($F$2:'+c('F')+')-SUM($D$2:'+c('D')+'))",'+
+                                   '"='+c('J')+'-'+c('I')+'",'
+                                   '"='+c('K')+'/'+c('G')+'",'
+                                   '"='+c('O')+'/'+c('I')+'"'
+        ]))
     }
     resource.append(spreadsheetId=a.args.spreadsheet, range=RANGE_NAME,
                     valueInputOption='USER_ENTERED', body=body).execute()
