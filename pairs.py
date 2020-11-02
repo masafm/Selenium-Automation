@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from common import Automation
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 import sys
 import time
 import re
@@ -25,26 +26,33 @@ try:
     except:
         pass
 
-    for h in range(1,5):
-        a.driver.get('https://pairs.lv/search')
-        a.driver.find_element_by_xpath("//img[@class='lazy-img__zO0o_ css-u486sl-CircleImg lazy loaded']").click()
-        for i in range(1,10):
-            like = a.driver.find_element_by_xpath("(//span[contains(., 'いいね！')])[1]/../span/span").text
-            time.sleep(1)
-            if like != '~5' and like != '500+' and int(like) > 70 and int(like) < 300:
-                try:
-                    a.driver.find_element_by_xpath("//span[.='いいね！']").click()
-                    button = a.driver.find_element_by_xpath("(//div[@class='icon__2FIQ1 flex-row icon-large__1nEsE'])[3]")
-                    action = webdriver.common.action_chains.ActionChains(a.driver)
-                    action.move_to_element_with_offset(button, 20, 50)
-                    action.click()
-                    action.perform()
-                except:
-                    a.driver.find_element_by_xpath("//div[@id='like_question_answer_modal']//img").click()
-                time.sleep(1)
+    a.driver.get('https://pairs.lv/search')
+    for i in range(1,500):
+        if i%10 == 0:
+            a.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(3)
+            a.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(3)
+        a.driver.find_element_by_xpath("(//img[@class='lazy-img__zO0o_ css-u486sl-CircleImg lazy loaded'])["+str(i)+"]").click()
+        
+        like = a.driver.find_element_by_xpath("(//span[contains(., 'いいね！')])[1]/../span/span").text
+        time.sleep(1)
+        if like != '~5' and like != '500+' and int(like) > 70 and int(like) < 300:
             try:
-                a.driver.find_element_by_xpath("//a[.='次のお相手を見る']").click()
+                a.driver.find_element_by_xpath("//span[.='いいね！']").click()
+                button = a.driver.find_element_by_xpath("(//div[@class='icon__2FIQ1 flex-row icon-large__1nEsE'])[3]")
+                action = webdriver.common.action_chains.ActionChains(a.driver)
+                action.move_to_element_with_offset(button, 20, 50)
+                action.click()
+                action.perform()
             except:
-                pass
+                a.driver.find_element_by_xpath("//div[@id='like_question_answer_modal']//img").click()
+            time.sleep(1)
+        try:
+            a.driver.find_element_by_xpath("(//button[@class='css-1hgrnjs-pointerStyles-ButtonProtect'])[1]").click()
+        except:
+            pass
+
+    a.driver.quit()
 except:
     a.exit_on_err()
