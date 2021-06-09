@@ -18,9 +18,12 @@ class Automation:
         parser.add_argument('--store')
         parser.add_argument('--password2')
         parser.add_argument('--spreadsheet')
+        parser.add_argument('--proxy')
         self.args = parser.parse_args()
         options = Options()
         options.binary_location = "/usr/bin/chromium-browser"
+        if self.args.proxy:
+            options.add_argument('--proxy-server=http://%s' % self.args.proxy)
         self.driver = webdriver.Chrome(options=options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(15)
