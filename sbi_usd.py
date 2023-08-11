@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # pip3 install --user google-api-python-client oauth2client
 from selenium import webdriver
 from common import Automation
