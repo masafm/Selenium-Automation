@@ -21,7 +21,7 @@ class Automation:
         parser.add_argument('--proxy')
         self.args = parser.parse_args()
         options = Options()
-        options.binary_location = "/usr/bin/firefox"
+        options.binary_location = "/usr/bin/chromium-browser"
         if self.args.proxy:
             options.add_argument('--proxy-server=http://%s' % self.args.proxy)
         self.driver = webdriver.Chrome(options=options)
