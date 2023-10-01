@@ -7,9 +7,11 @@ from datetime import datetime as d
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import xorcrypt as xc
+import warnings
 
 class Automation:
     def __init__(self, name):
+        warnings.filterwarnings("ignore", category=DeprecationWarning)
         self.name = name
         parser = argparse.ArgumentParser(description='')
         parser.add_argument('key')
