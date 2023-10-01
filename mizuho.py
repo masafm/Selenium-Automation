@@ -6,7 +6,7 @@ import time
 a = Automation('mizuho')
 
 try:
-    a.driver.get('https://netclub.mizuho-sc.com/mnc/login?rt_bn=sc_top_hd_login')
+    a.driver.get('https://mnc.mizuho-sc.com/web/rmfIndexWebAction.do')
     a.driver.find_element_by_id("IDInputKB").send_keys(a.args.user)
     a.driver.find_element_by_id("PWInputKB").send_keys(a.decrypt(a.args.password))
     a.driver.find_element_by_name("send").click()
