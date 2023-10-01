@@ -40,7 +40,7 @@ try:
     
     a.driver.find_element_by_xpath("//img[@alt='口座管理']").click()
     time.sleep(3)
-    a.driver.find_element_by_xpath("//div[@id='navi02P']//a[.='口座（外貨建）']").click()
+    a.driver.find_element_by_xpath("//div[@id='navi02P']//a[.='口座(外貨建)']").click()
     usd = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[1]/td[2]").text.replace(',','')
     jpy = a.driver.find_element_by_xpath("//tr[@id='summary_USD']/td[3]//tr[2]/td[2]").text.replace(',','')
     date = dt.now().strftime('%Y/%m/%d %H:%M:%S')
