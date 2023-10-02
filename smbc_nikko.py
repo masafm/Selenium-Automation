@@ -35,12 +35,14 @@ try:
         a.driver.find_element_by_xpath("//input[@alt='申告内容確認']").click()
         a.screenshot()
         try:
+            a.driver.find_element_by_name("toriPasswd").send_keys(a.args.password2)
             a.driver.find_element_by_xpath("//input[@alt='需要申告']").click()
         except:
             a.driver.find_element_by_name("snkokSu").clear()
             a.driver.find_element_by_name("snkokSu").send_keys('100')
             a.driver.find_element_by_name("実行").click()
             a.screenshot()
+            a.driver.find_element_by_name("toriPasswd").send_keys(a.args.password2)
             a.driver.find_element_by_xpath("//input[@alt='需要申告']").click()
             
         a.screenshot()
