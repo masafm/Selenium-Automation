@@ -13,17 +13,15 @@ try:
     a.driver.find_element_by_xpath("//input[@value='ログイン']").click()
     
     for i in range(5):
-        a.driver.find_element_by_link_text("新規公開/公募売出").click()
-        a.driver.find_element_by_link_text("新規公開株式").click()
+        a.driver.find_element_by_link_text("お取引").click()
         a.driver.find_element_by_link_text("抽選参加申込").click()
         try:
             a.driver.find_element_by_link_text("はい").click()
-            a.driver.find_element_by_name("RADIO_DATA").click()
         except:
             break
-        a.driver.find_element_by_name("確認へ").click()
-        a.driver.find_element_by_xpath("//input[6]").click()
-        a.driver.find_element_by_name("ANSHO_NO").send_keys(a.decrypt(a.args.password2))
+        a.driver.find_element_by_name("IPOChusenkanou.x").click()
+        a.driver.find_element_by_xpath("//input[@value='承諾する']").click()
+        a.driver.find_element_by_id("ANSHO_NO").send_keys(a.decrypt(a.args.password2))
         a.screenshot()
         a.driver.find_element_by_name("MOUSIKOMI").click()
         a.screenshot()
