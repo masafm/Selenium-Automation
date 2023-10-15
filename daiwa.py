@@ -17,9 +17,9 @@ try:
         a.driver.find_element_by_link_text("抽選参加申込").click()
         try:
             a.driver.find_element_by_link_text("はい").click()
+            a.driver.find_element_by_name("IPOChusenkanou.x").click()
         except:
             break
-        a.driver.find_element_by_name("IPOChusenkanou.x").click()
         a.driver.find_element_by_xpath("//input[@value='承諾する']").click()
         a.driver.find_element_by_id("ANSHO_NO").send_keys(a.decrypt(a.args.password2))
         a.screenshot()
