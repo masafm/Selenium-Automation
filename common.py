@@ -14,9 +14,9 @@ class Automation:
         warnings.filterwarnings("ignore", category=DeprecationWarning)
         self.name = name
         parser = argparse.ArgumentParser(description='')
-        parser.add_argument('key')
-        parser.add_argument('user')
-        parser.add_argument('password')
+        parser.add_argument('--key', default=os.getenv('KEY',''))
+        parser.add_argument('--user', required=True)
+        parser.add_argument('--password', required=True)
         parser.add_argument('--store')
         parser.add_argument('--password2')
         parser.add_argument('--spreadsheet')
