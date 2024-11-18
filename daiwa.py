@@ -12,6 +12,11 @@ try:
     a.driver.find_element_by_id("putbox3").send_keys(a.decrypt(a.args.password))
     a.driver.find_element_by_xpath("//input[@value='ログイン']").click()
     
+    try:
+        a.driver.find_element_by_xpath('//*[@id="dnbPopupCloseIcon"]').click()
+    except:
+        pass
+
     for i in range(5):
         a.driver.find_element_by_link_text("お取引").click()
         a.driver.find_element_by_link_text("抽選参加申込").click()

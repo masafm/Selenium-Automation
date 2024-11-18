@@ -18,7 +18,8 @@ try:
             a.driver.find_element_by_xpath("//a[.='参加']").click()
         except:
             break
-        a.driver.find_element_by_xpath("//input[contains(@value,'同意する')]").click()
+        element = a.driver.find_element_by_xpath("//input[contains(@value,'同意する')]")
+        a.driver.execute_script("arguments[0].click();", element)
         a.driver.find_element_by_name("value").send_keys('100')
         a.driver.find_element_by_name("price").click()
         a.driver.find_element_by_name("price").send_keys(Keys.ARROW_DOWN)
