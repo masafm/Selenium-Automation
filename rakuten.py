@@ -40,30 +40,44 @@ try:
             a.driver.find_element_by_xpath("//a[.='申込']").click()
         except:
             break
-        a.driver.find_element_by_xpath("//a[.='電子目論見書等一覧へ']").click()
-        handle_array = a.driver.window_handles
-        a.driver.switch_to.window(handle_array[-1])
-        elements = a.driver.find_elements_by_xpath("//a[normalize-space(.)='閲覧']")
+        elements = []
+        try:
+            a.driver.find_element_by_xpath("//a[.='電子目論見書等一覧へ']").click()
+            handle_array = a.driver.window_handles
+            a.driver.switch_to.window(handle_array[-1])
+            elements = a.driver.find_elements_by_xpath("//a[normalize-space(.)='閲覧']")
+        except:
+            pass
         for e in elements:
+            handle_array = a.driver.window_handles
+            a.driver.switch_to.window(handle_array[-1])
             href = e.get_attribute("href")
             script = f"window.open('{href}', '_blank');"
             a.driver.execute_script(script)
             time.sleep(1)
             handle_array = a.driver.window_handles
             a.driver.switch_to.window(handle_array[-1])
-            iframe = a.driver.find_element_by_id("readframe")
+            iframe = None
+            try:
+                iframe = a.driver.find_element_by_id("sendframe")
+            except:
+                iframe = a.driver.find_element_by_id("readframe")
             a.driver.switch_to.frame(iframe)
             time.sleep(1)
             a.driver.find_element_by_id("agreeMsg").click()
             time.sleep(1)
             a.driver.find_element_by_xpath("//a[normalize-space(.)='完了する']").click()
-            a.driver.switch_to.default_content()
-            time.sleep(1)
+            handle_array = a.driver.window_handles
+            a.driver.switch_to.window(handle_array[-1])
             a.driver.close()
-        a.driver.close()
-        handle_array = a.driver.window_handles
-        a.driver.switch_to.window(handle_array[-1])
-        driver.refresh()
+
+        if elements:
+            handle_array = a.driver.window_handles
+            a.driver.switch_to.window(handle_array[-1])
+            a.driver.close()
+            handle_array = a.driver.window_handles
+            a.driver.switch_to.window(handle_array[-1])
+            driver.refresh()
         a.driver.find_element_by_xpath("//input[contains(@value,'確　認')]").click()
         a.driver.find_element_by_name("password").send_keys(a.decrypt(a.args.password2))
         a.driver.find_element_by_xpath("//input[contains(@value,'購入申込')]").click()
